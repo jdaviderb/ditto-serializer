@@ -7,8 +7,8 @@ class SimpleMiddleware extends Middleware {
 }
 
 class SimpleSerializer extends Serializer {
-  middlewares
-    .add(new SimpleMiddleware)
+//  middlewares
+//    .add(new SimpleMiddleware)
 
   attribute[String]("name") { "Jorge" }
   attribute[String]("last_name") { "Hernandez" }
