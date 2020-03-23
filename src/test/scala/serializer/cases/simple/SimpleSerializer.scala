@@ -1,7 +1,8 @@
 package serializer.cases.simple
 import core.Serializer
 
-class SimpleSerializer extends Serializer {
-  attribute[String]("name") { "Jorge" }
-  attribute[String]("last_name") { "Hernandez" }
+class SimpleSerializer(val user: User) extends Serializer {
+  attribute[String]("name") { user.firstName }
+  attribute[String]("last_name") { user.lastName }
+  attribute[String]("full_name") { s"${user.firstName} ${user.lastName}" }
 }
