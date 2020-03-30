@@ -24,7 +24,7 @@ Ditto serializer is very simple we only have 3 helpers in our API for build JSON
 2. **list**: this helper returns a new DittoList this is useful when you need to build a..
 3. **map**: this helper returns a new DittoMap this is useful when you need to build a..
 
-### Your first serializer
+### Serialize Data
 ```scala
 import core.Serializer
 
@@ -40,6 +40,8 @@ class UserSerializer(val user: User) extends Serializer {
 val primitive = new UserSerializer(User("Jorge", "Hernandez")).serialize.primitiveDeep
 
 ```
+
+### Serialize Complex Data
 
 **Test case:**
 ```scala

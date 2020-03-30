@@ -2,6 +2,11 @@ package serializer.cases.nestedSimple
 import core.Serializer
 import types.DittoMap
 
+
+case class PhoneNumber(code: Int, number: String)
+case class Person(firstName: String, lastName: String, phone: PhoneNumber)
+case class ClassRoom(name: String, students: List[Person])
+
 class NestedSimpleSerializer extends Serializer {
   attribute[String]("type") { "currencies" }
 
