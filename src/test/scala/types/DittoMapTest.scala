@@ -56,7 +56,7 @@ class DittoMapTest extends FunSpec {
   describe("#mapKeysDeep") {
     it("map keys") {
       val details = DittoMap().set("age", "27")
-      val map = DittoMap().set("name", "Jorge").set("details", details).mapKeysDeep() { name => name + "_deep" }
+      val map = DittoMap().set("name", "Jorge").set("details", details).mapKeysDeep(name => name + "_deep")
       val childExpected = map.primitiveDeep.primitive.get("details_deep").get.asInstanceOf[Map[String, Any]]
 
       assert(map.primitiveDeep.primitive.get("name_deep").get == "Jorge")

@@ -8,7 +8,7 @@ case class DittoMap private (data: Map[String, Any] = Map()) {
   def primitive: Map[String, Any] = data
   def primitiveDeep: DittoMap = this.copy(toPrimitive(data))
 
-  def mapKeysDeep()(transform: (String) => String): DittoMap =
+  def mapKeysDeep(transform: (String) => String): DittoMap =
     copy(MapKeys.transformDeepKeys(primitiveDeep.primitive)(transform))
 
   private def toPrimitive(data: Map[String, Any]): Map[String, Any] =
