@@ -1,5 +1,5 @@
-package types
-import utils.MapKeys
+package org.jdaviderb.dittoSerializer.types
+import org.jdaviderb.dittoSerializer.utils.MapKeys
 
 case class DittoMap private (data: Map[String, Any] = Map()) {
   def set[T: DittoTypes](key: String, value: T): DittoMap = copy(data + (key -> value))
@@ -18,6 +18,7 @@ case class DittoMap private (data: Map[String, Any] = Map()) {
     case list: List[Any] => list.map { row => toPrimitiveDeep(row) }
     case dittoList: DittoList => dittoList.primitive.map { row => toPrimitiveDeep(row) }
     case dittoMap: DittoMap => toPrimitive(dittoMap.primitive)
+    case dittoSerializer: DittoSerializer => dittoSerializer.serialize.primitiveDeep.primitive
     case _ => value
   }
 }

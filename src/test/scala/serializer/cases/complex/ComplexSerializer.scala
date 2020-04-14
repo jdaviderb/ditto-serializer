@@ -1,5 +1,5 @@
 package serializer.cases.complex
-import core.Serializer
+import org.jdaviderb.dittoSerializer.core.Serializer
 import java.util.UUID
 
 case class PhoneNumber(code: Int, number: String)

@@ -1,6 +1,6 @@
 package serializer.cases.nestedSimple
-import core.Serializer
-import types.DittoMap
+import org.jdaviderb.dittoSerializer.core.Serializer
+import org.jdaviderb.dittoSerializer.types.DittoMap
 
 
 case class PhoneNumber(code: Int, number: String)

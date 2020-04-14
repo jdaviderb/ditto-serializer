@@ -1,4 +1,4 @@
-package utils
+package org.jdaviderb.dittoSerializer.utils
 
 object MapKeys {
   def transformDeepKeys(data: Map[String, Any])(transformKey: (String) => String): Map[String, Any] =

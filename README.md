@@ -26,7 +26,7 @@ Ditto serializer is very simple we only have 3 helpers in our API for build JSON
 
 ### Serialize Data
 ```scala
-import core.Serializer
+import org.jdaviderb.dittoSerializer.core.Serializer
 
 case class User(firstName: String, lastName: String)
 
@@ -60,7 +60,7 @@ class UserSerializerTest extends FunSpec {
 }
 ```
 ### DSL Types
-Ditto data types are:
+Ditto data org.jdaviderb.dittoSerializer.types are:
 
 **Number:**  
 ```scala

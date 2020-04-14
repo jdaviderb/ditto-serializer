@@ -1,4 +1,4 @@
-package types
+package org.jdaviderb.dittoSerializer.types
 import org.scalatest.FunSpec
 
 class DittoListTest extends FunSpec {

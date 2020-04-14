@@ -1,4 +1,4 @@
-package types
+package org.jdaviderb.dittoSerializer.types
 
 trait DittoSerializer {
   var data: DittoMap

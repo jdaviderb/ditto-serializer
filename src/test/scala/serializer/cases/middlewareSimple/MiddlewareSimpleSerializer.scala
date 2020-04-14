@@ -1,6 +1,6 @@
 package serializer.cases.middlewareSimple
 
-import core.Serializer
+import org.jdaviderb.dittoSerializer.core.Serializer
 
 class MiddlewareSimpleSerializer extends Serializer {
   middlewares

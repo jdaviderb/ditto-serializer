@@ -1,4 +1,4 @@
-package types
+package org.jdaviderb.dittoSerializer.types
 
 case class DittoList private (data: List[Any] = List()) {
   def add[T: DittoTypes](value: T): DittoList = copy(data :+ value)

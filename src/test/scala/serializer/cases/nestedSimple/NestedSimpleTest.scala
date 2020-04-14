@@ -1,6 +1,6 @@
 package serializer.cases.nestedSimple
 import org.scalatest.FunSpec
-import types.DittoMap
+import org.jdaviderb.dittoSerializer.types.DittoMap
 
 class NestedSimpleTest extends FunSpec {
   val serializer = new NestedSimpleSerializer

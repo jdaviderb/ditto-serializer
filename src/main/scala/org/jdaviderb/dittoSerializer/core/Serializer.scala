@@ -1,8 +1,8 @@
-package core
+package org.jdaviderb.dittoSerializer.core
 
-import types.{DittoList, DittoMap, DittoSerializer, DittoTypes}
+import org.jdaviderb.dittoSerializer.types.{DittoList, DittoMap, DittoSerializer, DittoTypes}
 
-abstract class Serializer  extends DittoSerializer {
+abstract class Serializer extends DittoSerializer {
   var data: DittoMap = DittoMap()
   val middlewares: MiddlewareManager = new MiddlewareManager
 

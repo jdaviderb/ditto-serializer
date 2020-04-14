@@ -3,7 +3,7 @@ package serializer.cases.complex
 import java.util.UUID.randomUUID
 
 import org.scalatest.FunSpec
-import types.{DittoList, DittoMap}
+import org.jdaviderb.dittoSerializer.types.{DittoList, DittoMap}
 
 
 class ComplexTest extends FunSpec {

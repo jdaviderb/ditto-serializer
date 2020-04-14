@@ -1,7 +1,7 @@
 package serializer.cases.listSimple
 
 import org.scalatest.FunSpec
-import types.DittoList
+import org.jdaviderb.dittoSerializer.types.DittoList
 
 class ListSimpleSerializerTest extends FunSpec {
   val serializer = new ListSimpleSerializer()

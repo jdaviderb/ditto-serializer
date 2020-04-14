@@ -1,6 +1,6 @@
-package core
+package org.jdaviderb.dittoSerializer.core
 
-import types.{DittoMap, Middleware}
+import org.jdaviderb.dittoSerializer.types.{DittoMap, Middleware}
 
 final class MiddlewareManager {
   var middlewares: List[Middleware] = List()
