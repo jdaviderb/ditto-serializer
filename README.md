@@ -5,83 +5,133 @@
   >
 </div>
 
-# Ditto Serializer
 > My motivation to build this library is because I didn't find a great library for JSON Serialization in Scala as  [ActiveModel::Serializer ](https://github.com/rails-api/active_model_serializers) **or** [fast_jsonapi](https://github.com/Netflix/fast_jsonapi) so I thought, why not to build a pretty DSL for JSON Serialization in this great language?
 
-# Table of Contents
+<div align="center">
+  <p>
+    <sub>Built with ❤︎ by <a href="https://github.com/jdaviderb">jdavierb</a></sub>
+  </p>
+</div>
+
+# ✨ Features 
+
+- ❤️ DSL similar to Active Model Serializer
+- ✅  Support encoders for JSON Serialization like Circle, Spray
+- 👋 Easy to test
+
+
+# 📜 Table of Contents  
 
 * [Installation](#installation)
 * [Usage](#usage)
   * [Serializer Definition](#serializer-definition)
   * [Object Serialization](#object-serialization)
-* [Contributing](#contributing)
+* [JSON Serialization](#json-serialization)
+  * [Using circle](#using-circle)
+  * [Using spray-json](#using-spray-json)
+
+### Installation
+
+If you use SBT you can add ditto-serializer in your project with
+
+```sbt
+libraryDependencies += "jdaviderb" %%  "ditto-serializer" % "0.1.0"
+```
 
 ### DSL
 
 Ditto serializer is very simple we only have 3 helpers in our API for build JSON
 
-1. **attribute**: this helper append to field to the JSON Object
-2. **list**: this helper returns a new DittoList this is useful when you need to build a..
-3. **map**: this helper returns a new DittoMap this is useful when you need to build a..
+1. **attribute[T]**: this helper append to field to the JSON Object
+2. **list**: this helper returns a new instance of  DittoList **(Array)** you can add new a element using the method `add` example: `list.add("new item")`
+3. **map**: this helper returns a new instance of DittoMap [JsonObject] you can add a new **(key, value)** using the method `set` example: `map.set("key", "value")`
 
-### Serialize Data
+
+### Model Definition
+
+```scala
+case class User(firstName: String, lastName: String)
+```
+
+### Serializer Definitation
 ```scala
 import org.jdaviderb.dittoSerializer.core.Serializer
 
+class UserSerializer(val user: User) extends Serializer {
+  attribute("name") { user.firstName }
+  attribute("last_name") { user.lastName }
+  attribute("full_name") { s"${user.firstName} ${user.lastName}" }
+}
+```
+<div align="left">
+  <p>
+    <sub><a href="https://github.com/jdaviderb">Complex Example</a></sub>
+  </p>
+</div>
+
+### JSON Serialization
+
+### Using Circle
+if you want to use Circle for JSON Serialization, you have to add this package in your project
+
+```sbt
+libraryDependencies += "jdaviderb" %%  "ditto-circle" % "0.1.0"
+```
+
+**Example:**
+
+```scala
+import org.jdaviderb.DittoCircle.Enconder
+import org.jdaviderb.dittoSerializer.core.Serializer
+
+// Model definition
 case class User(firstName: String, lastName: String)
 
+// Serializer
 class UserSerializer(val user: User) extends Serializer {
-  attribute[String]("name") { user.first_name }
-  attribute[String]("last_name") { user.lastName }
-  attribute[String]("full_name") { s"${user.name} ${user.lastName}" }
+  attribute("name") { user.firstName }
+  attribute("last_name") { user.lastName }
+  attribute("full_name") { s"${user.firstName} ${user.lastName}" }
 }
 
-// convert to primitive
-val primitive = new UserSerializer(User("Jorge", "Hernandez")).serialize.primitiveDeep
+// JSON Serialization
+val jorge = User("Jorge", "Hernandez")
+val josue = User("Josue", "Hernandez")
+val users = List(jorge, josue)
 
-```
-
-### Serialize Complex Data
-
-**Test case:**
-```scala
-class UserSerializerTest extends FunSpec {
-  val serializer = new SimpleSerializer(User("Jorge", "Hernandez"))
-
-  describe("a simple case") {
-    it("returns a DittoMap") {
-      val data = serializer.serialize
-
-      assert(data.get[String]("name").get == "Jorge")
-      assert(data.get[String]("last_name").get == "Hernandez")
-      assert(data.get[String]("full_name").get == "Jorge Hernandez")
-    }
+Enconder.from(new UserSerializer(jorge))
+/* 
+  RESULT: 
+  {
+    "full_name" : "Jorge Hernandez",
+    "last_name" : "Hernandez",
+    "name" : "Jorge"
   }
-}
-```
-### DSL Types
-Ditto data org.jdaviderb.dittoSerializer.types are:
+*/
 
-**Number:**  
-```scala
-attribute[Int]("attribute_name") { 1 }
-attribute[Long]("attribute_name") { 1 }
-attribute[Float]("attribute name") { 1.1 }
-attribute[Double]("attribute name") { 12.22 }
+Enconder.fromList(users.map(new UserSerializer(_)))
+/* 
+  RESULT: 
+  [
+    {
+      "full_name" : "Jorge Hernandez",
+      "last_name" : "Hernandez",
+      "name" : "Jorge"
+    },
+    {
+      "full_name" : "Josue Hernandez",
+      "last_name" : "Hernandez",
+      "name" : "Josue"
+    }
+  ]
+*/
+
 ```
-**String:**  
-```scala
-attribute[String]("attribute name") { "hello world" }
-```
- **Boolean:**  
-```scala
-attribute[Boolean]("attribute name") { true }
-```
-**null:**  
-```scala
-attribute[Option[Number]]("attribute name") { None }
-```
-**Object:**  
-```scala
-attribute[Option[DittoMap]]("attribute name") { map.set("key", "value") }
-```
+
+### Using Spray
+
+> Pending
+
+### Using Json4s
+
+> Pending
