@@ -7,28 +7,37 @@
 
 > My motivation to build this library is because I didn't find a great library for JSON Serialization in Scala as  [ActiveModel::Serializer ](https://github.com/rails-api/active_model_serializers) **or** [fast_jsonapi](https://github.com/Netflix/fast_jsonapi) so I thought, why not to build a pretty DSL for JSON Serialization in this great language?
 
+
 <div align="center">
   <p>
     <sub>Built with ❤︎ by <a href="https://github.com/jdaviderb">jdavierb</a></sub>
   </p>
 </div>
 
-# ✨ Features
 
-- ❤️ DSL similar to Active Model Serializer
+[![Build Status](https://travis-ci.com/jdaviderb/ditto-serializer.svg?token=5Xuc9Z8XseBGrimismLy&branch=master)](https://travis-ci.com/jdaviderb/ditto-serializer)
+
+# 🔥 Features
+
+- ❤️ DSL similar to [Active Model Serializer](https://github.com/rails-api/active_model_serializers), [Netflix Fast JSON API](https://github.com/Netflix/fast_jsonapi)
 - ✅  Support encoders for JSON Serialization like Circle, Spray
 - 👋 Easy to test
 
+
+<div align="center">
+  <img src="https://user-images.githubusercontent.com/4649902/80511812-3946a780-8942-11ea-90ad-551837eacd9d.png">
+</div>
 
 # 📜 Table of Contents
 
 * [Installation](#installation)
 * [Usage](#usage)
-  * [Serializer Definition](#serializer-definition)
-  * [Object Serialization](#object-serialization)
+  * [DSL](#DSL)
+  * [Model Definition](#model-definition)
+  * [Serializer Definition](#serializer-definitation)
 * [JSON Serialization](#json-serialization)
   * [Using circle](#using-circle)
-  * [Using spray-json](#using-spray-json)
+  * [Using spray-json](#soon)
 
 ### Installation
 
@@ -37,7 +46,7 @@ If you use SBT you can add ditto-serializer in your project with
 ```sbt
 externalResolvers += "ditto-serializer" at "https://maven.pkg.github.com/jdaviderb/ditto-serializer"
 
-libraryDependencies += "jdaviderb" %%  "ditto-serializer" % "0.5.0"
+libraryDependencies += "jdaviderb" %% "ditto-serializer" % "0.5"
 ```
 
 ### DSL
@@ -67,7 +76,7 @@ class UserSerializer(val user: User) extends Serializer {
 ```
 <div align="left">
   <p>
-    <sub><a href="https://github.com/jdaviderb">Complex Example</a></sub>
+    <sub><a href="https://github.com/jdaviderb/ditto-serializer/blob/master/src/test/scala/serializer/cases/complex/ComplexSerializer.scala#L9">Complex Example</a></sub>
   </p>
 </div>
 
@@ -79,7 +88,7 @@ if you want to use Circle for JSON Serialization, you have to add this package i
 ```sbt
 externalResolvers += "ditto-circle" at "https://maven.pkg.github.com/jdaviderb/ditto-circle"
 
-libraryDependencies += "jdaviderb" %%  "ditto-circle" % "0.5.0"
+libraryDependencies += "jdaviderb" %% "ditto-circle" % "0.5"
 ```
 
 **Example:**
@@ -139,3 +148,10 @@ Enconder.fromList(users.map(new UserSerializer(_)))
 ### Using Json4s
 
 > Pending
+
+### Pending
+
+- [ ] add more documentation
+- [ ] add examples for tests
+- [ ] support  Json4s
+- [ ] support  Spray Json
