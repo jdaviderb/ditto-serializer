@@ -1,6 +1,6 @@
 <div align="center">
-  <img 
-    src="https://xombitgames.com/wp-content/blogs.dir/27/files/2013/10/ditto-pokemon-x-pokemon-y.jpg" 
+  <img
+    src="https://xombitgames.com/wp-content/blogs.dir/27/files/2013/10/ditto-pokemon-x-pokemon-y.jpg"
     width="150"
   >
 </div>
@@ -13,14 +13,14 @@
   </p>
 </div>
 
-# ✨ Features 
+# ✨ Features
 
 - ❤️ DSL similar to Active Model Serializer
 - ✅  Support encoders for JSON Serialization like Circle, Spray
 - 👋 Easy to test
 
 
-# 📜 Table of Contents  
+# 📜 Table of Contents
 
 * [Installation](#installation)
 * [Usage](#usage)
@@ -35,7 +35,9 @@
 If you use SBT you can add ditto-serializer in your project with
 
 ```sbt
-libraryDependencies += "jdaviderb" %%  "ditto-serializer" % "0.1.0"
+externalResolvers += "ditto-serializer" at "https://maven.pkg.github.com/jdaviderb/ditto-serializer"
+
+libraryDependencies += "jdaviderb" %%  "ditto-serializer" % "0.5.0"
 ```
 
 ### DSL
@@ -75,7 +77,9 @@ class UserSerializer(val user: User) extends Serializer {
 if you want to use Circle for JSON Serialization, you have to add this package in your project
 
 ```sbt
-libraryDependencies += "jdaviderb" %%  "ditto-circle" % "0.1.0"
+externalResolvers += "ditto-circle" at "https://maven.pkg.github.com/jdaviderb/ditto-circle"
+
+libraryDependencies += "jdaviderb" %%  "ditto-circle" % "0.5.0"
 ```
 
 **Example:**
@@ -100,8 +104,8 @@ val josue = User("Josue", "Hernandez")
 val users = List(jorge, josue)
 
 Enconder.from(new UserSerializer(jorge))
-/* 
-  RESULT: 
+/*
+  RESULT:
   {
     "full_name" : "Jorge Hernandez",
     "last_name" : "Hernandez",
@@ -110,8 +114,8 @@ Enconder.from(new UserSerializer(jorge))
 */
 
 Enconder.fromList(users.map(new UserSerializer(_)))
-/* 
-  RESULT: 
+/*
+  RESULT:
   [
     {
       "full_name" : "Jorge Hernandez",
